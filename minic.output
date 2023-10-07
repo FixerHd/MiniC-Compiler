@@ -1,0 +1,881 @@
+Estado 71 conflictos: 1 desplazamiento/reducción
+
+
+Gramática
+
+    0 $accept: program $end
+
+    1 $@1: ε
+
+    2 program: VOI IDE PAI PAD LLI $@1 declarations statement_list LLD
+
+    3 $@2: ε
+
+    4 declarations: declarations VAR $@2 identifier_list PYC
+
+    5 $@3: ε
+
+    6 declarations: declarations CON $@3 identifier_list PYC
+    7             | ε
+
+    8 identifier_list: asig
+    9                | identifier_list COM asig
+
+   10 asig: IDE
+   11     | IDE ASI expression
+
+   12 statement_list: statement_list statement
+   13               | ε
+
+   14 statement: IDE ASI expression PYC
+   15          | LLI statement_list LLD
+   16          | IFF PAI expression PAD statement ELS statement
+   17          | IFF PAI expression PAD statement
+   18          | WHI PAI expression PAD statement
+   19          | PRI print_list PYC
+   20          | REA read_list PYC
+
+   21 print_list: print_item
+   22           | print_list COM print_item
+
+   23 print_item: expression
+   24           | CAD
+
+   25 read_list: IDE
+   26          | read_list COM IDE
+
+   27 expression: expression SUM expression
+   28           | expression RES expression
+   29           | expression MUL expression
+   30           | expression DIV expression
+   31           | RES expression
+   32           | PAI expression PAD
+   33           | IDE
+   34           | ENT
+
+
+Terminales con las reglas donde aparecen
+
+    $end (0) 0
+    error (256)
+    PRI (258) 19
+    SUM (259) 27
+    RES (260) 28 31
+    MUL (261) 29
+    DIV (262) 30
+    ASI (263) 11 14
+    PAI (264) 2 16 17 18 32
+    PAD (265) 2 16 17 18 32
+    LLI (266) 2 15
+    LLD (267) 2 15
+    COM (268) 9 22 26
+    PYC (269) 4 6 14 19 20
+    VAR (270) 4
+    ELS (271) 16
+    REA (272) 20
+    IFF (273) 16 17
+    VOI (274) 2
+    CON (275) 6
+    WHI (276) 18
+    IDE <cadena> (277) 2 10 11 14 25 26 33
+    ENT <cadena> (278) 34
+    CAD <cadena> (279) 24
+    RES2 (280)
+
+
+No terminales con las reglas donde aparecen
+
+    $accept (26)
+        on left: 0
+    program <codigo> (27)
+        on left: 2
+        on right: 0
+    $@1 (28)
+        on left: 1
+        on right: 2
+    declarations <codigo> (29)
+        on left: 4 6 7
+        on right: 2 4 6
+    $@2 (30)
+        on left: 3
+        on right: 4
+    $@3 (31)
+        on left: 5
+        on right: 6
+    identifier_list <codigo> (32)
+        on left: 8 9
+        on right: 4 6 9
+    asig <codigo> (33)
+        on left: 10 11
+        on right: 8 9
+    statement_list <codigo> (34)
+        on left: 12 13
+        on right: 2 12 15
+    statement <codigo> (35)
+        on left: 14 15 16 17 18 19 20
+        on right: 12 16 17 18
+    print_list <codigo> (36)
+        on left: 21 22
+        on right: 19 22
+    print_item <codigo> (37)
+        on left: 23 24
+        on right: 21 22
+    read_list <codigo> (38)
+        on left: 25 26
+        on right: 20 26
+    expression <codigo> (39)
+        on left: 27 28 29 30 31 32 33 34
+        on right: 11 14 16 17 18 23 27 28 29 30 31 32
+
+
+Estado 0
+
+    0 $accept: • program $end
+
+    VOI  desplazar e ir al estado 1
+
+    program  ir al estado 2
+
+
+Estado 1
+
+    2 program: VOI • IDE PAI PAD LLI $@1 declarations statement_list LLD
+
+    IDE  desplazar e ir al estado 3
+
+
+Estado 2
+
+    0 $accept: program • $end
+
+    $end  desplazar e ir al estado 4
+
+
+Estado 3
+
+    2 program: VOI IDE • PAI PAD LLI $@1 declarations statement_list LLD
+
+    PAI  desplazar e ir al estado 5
+
+
+Estado 4
+
+    0 $accept: program $end •
+
+    $default  aceptar
+
+
+Estado 5
+
+    2 program: VOI IDE PAI • PAD LLI $@1 declarations statement_list LLD
+
+    PAD  desplazar e ir al estado 6
+
+
+Estado 6
+
+    2 program: VOI IDE PAI PAD • LLI $@1 declarations statement_list LLD
+
+    LLI  desplazar e ir al estado 7
+
+
+Estado 7
+
+    2 program: VOI IDE PAI PAD LLI • $@1 declarations statement_list LLD
+
+    $default  reduce usando la regla 1 ($@1)
+
+    $@1  ir al estado 8
+
+
+Estado 8
+
+    2 program: VOI IDE PAI PAD LLI $@1 • declarations statement_list LLD
+
+    $default  reduce usando la regla 7 (declarations)
+
+    declarations  ir al estado 9
+
+
+Estado 9
+
+    2 program: VOI IDE PAI PAD LLI $@1 declarations • statement_list LLD
+    4 declarations: declarations • VAR $@2 identifier_list PYC
+    6             | declarations • CON $@3 identifier_list PYC
+
+    VAR  desplazar e ir al estado 10
+    CON  desplazar e ir al estado 11
+
+    $default  reduce usando la regla 13 (statement_list)
+
+    statement_list  ir al estado 12
+
+
+Estado 10
+
+    4 declarations: declarations VAR • $@2 identifier_list PYC
+
+    $default  reduce usando la regla 3 ($@2)
+
+    $@2  ir al estado 13
+
+
+Estado 11
+
+    6 declarations: declarations CON • $@3 identifier_list PYC
+
+    $default  reduce usando la regla 5 ($@3)
+
+    $@3  ir al estado 14
+
+
+Estado 12
+
+    2 program: VOI IDE PAI PAD LLI $@1 declarations statement_list • LLD
+   12 statement_list: statement_list • statement
+
+    PRI  desplazar e ir al estado 15
+    LLI  desplazar e ir al estado 16
+    LLD  desplazar e ir al estado 17
+    REA  desplazar e ir al estado 18
+    IFF  desplazar e ir al estado 19
+    WHI  desplazar e ir al estado 20
+    IDE  desplazar e ir al estado 21
+
+    statement  ir al estado 22
+
+
+Estado 13
+
+    4 declarations: declarations VAR $@2 • identifier_list PYC
+
+    IDE  desplazar e ir al estado 23
+
+    identifier_list  ir al estado 24
+    asig             ir al estado 25
+
+
+Estado 14
+
+    6 declarations: declarations CON $@3 • identifier_list PYC
+
+    IDE  desplazar e ir al estado 23
+
+    identifier_list  ir al estado 26
+    asig             ir al estado 25
+
+
+Estado 15
+
+   19 statement: PRI • print_list PYC
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+    CAD  desplazar e ir al estado 31
+
+    print_list  ir al estado 32
+    print_item  ir al estado 33
+    expression  ir al estado 34
+
+
+Estado 16
+
+   15 statement: LLI • statement_list LLD
+
+    $default  reduce usando la regla 13 (statement_list)
+
+    statement_list  ir al estado 35
+
+
+Estado 17
+
+    2 program: VOI IDE PAI PAD LLI $@1 declarations statement_list LLD •
+
+    $default  reduce usando la regla 2 (program)
+
+
+Estado 18
+
+   20 statement: REA • read_list PYC
+
+    IDE  desplazar e ir al estado 36
+
+    read_list  ir al estado 37
+
+
+Estado 19
+
+   16 statement: IFF • PAI expression PAD statement ELS statement
+   17          | IFF • PAI expression PAD statement
+
+    PAI  desplazar e ir al estado 38
+
+
+Estado 20
+
+   18 statement: WHI • PAI expression PAD statement
+
+    PAI  desplazar e ir al estado 39
+
+
+Estado 21
+
+   14 statement: IDE • ASI expression PYC
+
+    ASI  desplazar e ir al estado 40
+
+
+Estado 22
+
+   12 statement_list: statement_list statement •
+
+    $default  reduce usando la regla 12 (statement_list)
+
+
+Estado 23
+
+   10 asig: IDE •
+   11     | IDE • ASI expression
+
+    ASI  desplazar e ir al estado 41
+
+    $default  reduce usando la regla 10 (asig)
+
+
+Estado 24
+
+    4 declarations: declarations VAR $@2 identifier_list • PYC
+    9 identifier_list: identifier_list • COM asig
+
+    COM  desplazar e ir al estado 42
+    PYC  desplazar e ir al estado 43
+
+
+Estado 25
+
+    8 identifier_list: asig •
+
+    $default  reduce usando la regla 8 (identifier_list)
+
+
+Estado 26
+
+    6 declarations: declarations CON $@3 identifier_list • PYC
+    9 identifier_list: identifier_list • COM asig
+
+    COM  desplazar e ir al estado 42
+    PYC  desplazar e ir al estado 44
+
+
+Estado 27
+
+   31 expression: RES • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 45
+
+
+Estado 28
+
+   32 expression: PAI • expression PAD
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 46
+
+
+Estado 29
+
+   33 expression: IDE •
+
+    $default  reduce usando la regla 33 (expression)
+
+
+Estado 30
+
+   34 expression: ENT •
+
+    $default  reduce usando la regla 34 (expression)
+
+
+Estado 31
+
+   24 print_item: CAD •
+
+    $default  reduce usando la regla 24 (print_item)
+
+
+Estado 32
+
+   19 statement: PRI print_list • PYC
+   22 print_list: print_list • COM print_item
+
+    COM  desplazar e ir al estado 47
+    PYC  desplazar e ir al estado 48
+
+
+Estado 33
+
+   21 print_list: print_item •
+
+    $default  reduce usando la regla 21 (print_list)
+
+
+Estado 34
+
+   23 print_item: expression •
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+
+    $default  reduce usando la regla 23 (print_item)
+
+
+Estado 35
+
+   12 statement_list: statement_list • statement
+   15 statement: LLI statement_list • LLD
+
+    PRI  desplazar e ir al estado 15
+    LLI  desplazar e ir al estado 16
+    LLD  desplazar e ir al estado 53
+    REA  desplazar e ir al estado 18
+    IFF  desplazar e ir al estado 19
+    WHI  desplazar e ir al estado 20
+    IDE  desplazar e ir al estado 21
+
+    statement  ir al estado 22
+
+
+Estado 36
+
+   25 read_list: IDE •
+
+    $default  reduce usando la regla 25 (read_list)
+
+
+Estado 37
+
+   20 statement: REA read_list • PYC
+   26 read_list: read_list • COM IDE
+
+    COM  desplazar e ir al estado 54
+    PYC  desplazar e ir al estado 55
+
+
+Estado 38
+
+   16 statement: IFF PAI • expression PAD statement ELS statement
+   17          | IFF PAI • expression PAD statement
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 56
+
+
+Estado 39
+
+   18 statement: WHI PAI • expression PAD statement
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 57
+
+
+Estado 40
+
+   14 statement: IDE ASI • expression PYC
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 58
+
+
+Estado 41
+
+   11 asig: IDE ASI • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 59
+
+
+Estado 42
+
+    9 identifier_list: identifier_list COM • asig
+
+    IDE  desplazar e ir al estado 23
+
+    asig  ir al estado 60
+
+
+Estado 43
+
+    4 declarations: declarations VAR $@2 identifier_list PYC •
+
+    $default  reduce usando la regla 4 (declarations)
+
+
+Estado 44
+
+    6 declarations: declarations CON $@3 identifier_list PYC •
+
+    $default  reduce usando la regla 6 (declarations)
+
+
+Estado 45
+
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+   31           | RES expression •
+
+    $default  reduce usando la regla 31 (expression)
+
+
+Estado 46
+
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+   32           | PAI expression • PAD
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+    PAD  desplazar e ir al estado 61
+
+
+Estado 47
+
+   22 print_list: print_list COM • print_item
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+    CAD  desplazar e ir al estado 31
+
+    print_item  ir al estado 62
+    expression  ir al estado 34
+
+
+Estado 48
+
+   19 statement: PRI print_list PYC •
+
+    $default  reduce usando la regla 19 (statement)
+
+
+Estado 49
+
+   27 expression: expression SUM • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 63
+
+
+Estado 50
+
+   28 expression: expression RES • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 64
+
+
+Estado 51
+
+   29 expression: expression MUL • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 65
+
+
+Estado 52
+
+   30 expression: expression DIV • expression
+
+    RES  desplazar e ir al estado 27
+    PAI  desplazar e ir al estado 28
+    IDE  desplazar e ir al estado 29
+    ENT  desplazar e ir al estado 30
+
+    expression  ir al estado 66
+
+
+Estado 53
+
+   15 statement: LLI statement_list LLD •
+
+    $default  reduce usando la regla 15 (statement)
+
+
+Estado 54
+
+   26 read_list: read_list COM • IDE
+
+    IDE  desplazar e ir al estado 67
+
+
+Estado 55
+
+   20 statement: REA read_list PYC •
+
+    $default  reduce usando la regla 20 (statement)
+
+
+Estado 56
+
+   16 statement: IFF PAI expression • PAD statement ELS statement
+   17          | IFF PAI expression • PAD statement
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+    PAD  desplazar e ir al estado 68
+
+
+Estado 57
+
+   18 statement: WHI PAI expression • PAD statement
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+    PAD  desplazar e ir al estado 69
+
+
+Estado 58
+
+   14 statement: IDE ASI expression • PYC
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+    PYC  desplazar e ir al estado 70
+
+
+Estado 59
+
+   11 asig: IDE ASI expression •
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    SUM  desplazar e ir al estado 49
+    RES  desplazar e ir al estado 50
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+
+    $default  reduce usando la regla 11 (asig)
+
+
+Estado 60
+
+    9 identifier_list: identifier_list COM asig •
+
+    $default  reduce usando la regla 9 (identifier_list)
+
+
+Estado 61
+
+   32 expression: PAI expression PAD •
+
+    $default  reduce usando la regla 32 (expression)
+
+
+Estado 62
+
+   22 print_list: print_list COM print_item •
+
+    $default  reduce usando la regla 22 (print_list)
+
+
+Estado 63
+
+   27 expression: expression • SUM expression
+   27           | expression SUM expression •
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+
+    $default  reduce usando la regla 27 (expression)
+
+
+Estado 64
+
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   28           | expression RES expression •
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+
+    MUL  desplazar e ir al estado 51
+    DIV  desplazar e ir al estado 52
+
+    $default  reduce usando la regla 28 (expression)
+
+
+Estado 65
+
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   29           | expression MUL expression •
+   30           | expression • DIV expression
+
+    $default  reduce usando la regla 29 (expression)
+
+
+Estado 66
+
+   27 expression: expression • SUM expression
+   28           | expression • RES expression
+   29           | expression • MUL expression
+   30           | expression • DIV expression
+   30           | expression DIV expression •
+
+    $default  reduce usando la regla 30 (expression)
+
+
+Estado 67
+
+   26 read_list: read_list COM IDE •
+
+    $default  reduce usando la regla 26 (read_list)
+
+
+Estado 68
+
+   16 statement: IFF PAI expression PAD • statement ELS statement
+   17          | IFF PAI expression PAD • statement
+
+    PRI  desplazar e ir al estado 15
+    LLI  desplazar e ir al estado 16
+    REA  desplazar e ir al estado 18
+    IFF  desplazar e ir al estado 19
+    WHI  desplazar e ir al estado 20
+    IDE  desplazar e ir al estado 21
+
+    statement  ir al estado 71
+
+
+Estado 69
+
+   18 statement: WHI PAI expression PAD • statement
+
+    PRI  desplazar e ir al estado 15
+    LLI  desplazar e ir al estado 16
+    REA  desplazar e ir al estado 18
+    IFF  desplazar e ir al estado 19
+    WHI  desplazar e ir al estado 20
+    IDE  desplazar e ir al estado 21
+
+    statement  ir al estado 72
+
+
+Estado 70
+
+   14 statement: IDE ASI expression PYC •
+
+    $default  reduce usando la regla 14 (statement)
+
+
+Estado 71
+
+   16 statement: IFF PAI expression PAD statement • ELS statement
+   17          | IFF PAI expression PAD statement •
+
+    ELS  desplazar e ir al estado 73
+
+    ELS       [reduce usando la regla 17 (statement)]
+    $default  reduce usando la regla 17 (statement)
+
+
+Estado 72
+
+   18 statement: WHI PAI expression PAD statement •
+
+    $default  reduce usando la regla 18 (statement)
+
+
+Estado 73
+
+   16 statement: IFF PAI expression PAD statement ELS • statement
+
+    PRI  desplazar e ir al estado 15
+    LLI  desplazar e ir al estado 16
+    REA  desplazar e ir al estado 18
+    IFF  desplazar e ir al estado 19
+    WHI  desplazar e ir al estado 20
+    IDE  desplazar e ir al estado 21
+
+    statement  ir al estado 74
+
+
+Estado 74
+
+   16 statement: IFF PAI expression PAD statement ELS statement •
+
+    $default  reduce usando la regla 16 (statement)

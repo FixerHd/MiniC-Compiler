@@ -1,0 +1,5 @@
+Error en linea 4: error semantico, identificador ya declarado, hay 1 errores semanticos
+Error en linea 5: error semantico, asignacion a una constante, hay 2 errores semanticos
+error en linea 6: error lexico, hay 1 errores lexicos en total: #
+Error en linea 9: error semantico, identificador no declarado, hay 3 errores semanticos
+Error en linea 13: syntax error, hay 3 errores semanticos
